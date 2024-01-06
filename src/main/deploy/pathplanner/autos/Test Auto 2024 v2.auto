@@ -1,6 +1,12 @@
 {
   "version": 1.0,
-  "startingPose": null,
+  "startingPose": {
+    "position": {
+      "x": 1.7384923658736207,
+      "y": 2.729181184858097
+    },
+    "rotation": 0
+  },
   "command": {
     "type": "sequential",
     "data": {
@@ -8,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Example Path"
+            "pathName": "Test Path 2024"
           }
         }
       ]

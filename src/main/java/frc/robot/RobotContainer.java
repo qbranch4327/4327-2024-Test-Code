@@ -46,9 +46,9 @@ public class RobotContainer {
     // private final BuddyBarSubsystem bSub;
 
     /* Drive Controls */
-    private final int translationAxis = XboxController.Axis.kLeftY.value;
-    private final int strafeAxis = XboxController.Axis.kLeftX.value;
-    private final int rotationAxis = XboxController.Axis.kRightX.value;
+    private final int translationAxis = XboxController.Axis.kRightX.value;
+    private final int strafeAxis = XboxController.Axis.kRightTrigger.value;
+    private final int rotationAxis = XboxController.Axis.kLeftX.value;
     Command vCommand;
 
     /* Driver Buttons */
@@ -61,7 +61,7 @@ public class RobotContainer {
     /* Paths */
     private final autoBuilder autoBuilder;
     private static final String[] paths = {
-        "Test Auto 2024"
+        "Test Auto 2024 v2"
         };
 
     private final SendableChooser<Command> autoChooser;
@@ -109,7 +109,7 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
     
-        SmartDashboard.putData("Test Auto 2024", new PathPlannerAuto("Test Auto 2024"));
+        SmartDashboard.putData("Test Auto 2024 v2", new PathPlannerAuto("Test Auto 2024 v2"));
     }
 
     /**
