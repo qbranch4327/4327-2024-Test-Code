@@ -35,7 +35,7 @@ public class AutonIntakeCommand extends Command{
     public boolean isFinished() {
         if (timer.get() > 1) {
             intakeSubsystem.intakeOff();
-            //intakeSubsystem.grab();
+            intakeSubsystem.grab();
             return true;
         }
         return false;
