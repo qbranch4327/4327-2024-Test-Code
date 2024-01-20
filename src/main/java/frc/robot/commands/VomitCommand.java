@@ -28,7 +28,7 @@ public class VomitCommand extends Command  {
     @Override
     public void execute() {
         spinner.stop();
-        //intake.vomit();
+        intake.vomit();
     }
 
     @Override

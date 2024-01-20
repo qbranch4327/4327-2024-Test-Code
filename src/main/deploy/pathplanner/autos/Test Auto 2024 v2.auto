@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.77430354290908,
-      "y": 4.280060525933018
+      "x": 1.7384923658736207,
+      "y": 2.729181184858097
     },
-    "rotation": 120.25643716352924
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Path"
+            "pathName": "Test Path 2024"
           }
         }
       ]

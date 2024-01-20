@@ -43,11 +43,6 @@ public class RobotContainer {
     private final TiltSubsystem tSub;
     private final IntakeSubsystem iSub;
     private final SpinnerSubsystem sSub;
-    private final WristSubsystem wSub;
-    private final VisionSubsystem vSub;
-    private final RotationArmSubsystem rSub;
-    private final ClimberSubsystem cSub;
-    private final ShooterSubsytem shSub;
     // private final BuddyBarSubsystem bSub;
 
     /* Drive Controls */
@@ -65,10 +60,9 @@ public class RobotContainer {
 
     /* Paths */
     private final autoBuilder autoBuilder;
-    // private static final String[] paths = {
-    //     "Test Auto 2024 v2",
-    //     "P Auto"
-    //     };
+    private static final String[] paths = {
+        "Test Auto 2024 v2"
+        };
 
     private final SendableChooser<Command> autoChooser;
     // SendableChooser<String> qChooser = new SendableChooser<>();
@@ -82,12 +76,6 @@ public class RobotContainer {
         this.tSub = new TiltSubsystem();
         this.iSub = new IntakeSubsystem();
         this.sSub = new SpinnerSubsystem();
-        this.wSub = new WristSubsystem();
-        this.vSub = new VisionSubsystem();
-        this.rSub = new RotationArmSubsystem();
-        this.cSub = new ClimberSubsystem();
-        this.shSub = new ShooterSubsytem();
-
         // this.bSub = new BuddyBarSubsystem();
         //this.vision = new VisionSubsystem();
         this.autoBuilder = new autoBuilder(s_Swerve, iSub, sSub, eSub);
@@ -104,12 +92,8 @@ public class RobotContainer {
         vCommand = new VomitCommand(iSub, sSub);
 
         eSub.setDefaultCommand(new ElevatorCommand(eSub, tSub, driver2));
-        iSub.setDefaultCommand(new IntakeCommand(iSub, driver2, driver));
-        wSub.setDefaultCommand(new WristCommand(wSub, driver2));
-        //vSub.setDefaultCommand(new VisionCommand);
-        rSub.setDefaultCommand(new RotationArmCommand(rSub, driver2));
-        cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
-        shSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
+        iSub.setDefaultCommand(new IntakeCommand(iSub, sSub, driver2, driver));
+        // bSub.setDefaultCommand(new BuddyBarCommand(bSub, driver));
 
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
@@ -122,10 +106,10 @@ public class RobotContainer {
             )
         );
 
-        NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
-
         // Configure the button bindings
         configureButtonBindings();
+    
+        SmartDashboard.putData("Test Auto 2024 v2", new PathPlannerAuto("Test Auto 2024 v2"));
     }
 
     /**
@@ -137,6 +121,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         // zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        SmartDashboard.putData("Test Auto 2024", new PathPlannerAuto("Test Auto 2024"));
     }
 
     /**
