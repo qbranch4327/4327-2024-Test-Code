@@ -54,6 +54,42 @@ public class RotationArmSubsystem extends SubsystemBase{
         armMotor.set(-0.5);
     }
 
+    public boolean goToGround()  {
+        if (armEncoder.getAbsolutePosition() > 0) {
+            this.goDown();
+            return false;
+        }
+        else    {
+            armMotor.set(holdingPwr);
+            return true;
+        }
+    }
+
+    public boolean goToShoot()  {
+        if (armEncoder.getAbsolutePosition() < 0) {
+            this.goUp();
+            return false;
+        }
+        else if (armEncoder.getAbsolutePosition() > 0) {
+            this.goDown();
+            return false;
+        }
+        else    {
+            return true;
+        }
+    }
+
+    public boolean goToAmp()  {
+        if (armEncoder.getAbsolutePosition() < 0) {
+            this.goUp();
+            return false;
+        }
+        else    {
+            armMotor.set(holdingPwr);
+            return true;
+        }
+    }
+
     public boolean encoderCheck(double distance){
         if (armEncoder.getAbsolutePosition() == distance)  {
             return true;

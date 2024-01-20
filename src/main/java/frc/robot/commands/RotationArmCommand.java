@@ -8,6 +8,7 @@ public class RotationArmCommand extends CommandBase {
     
     RotationArmSubsystem rotationArmSubsystem;
     XboxController controller2;
+    boolean commandScheduled;
 
 
     public RotationArmCommand(RotationArmSubsystem rotationArmSubsystem, XboxController controller2)    {
@@ -19,14 +20,31 @@ public class RotationArmCommand extends CommandBase {
     @Override
     public void execute()   {
         if (controller2.getAButton())   {
-            rotationArmSubsystem.goTo(0);
+            commandScheduled = true;
+            if (commandScheduled)   {
+                boolean doInterrupt = rotationArmSubsystem.goToShoot();
+                if (doInterrupt)    {
+                    commandScheduled = false;
+                }
+            }
         }
         else if (controller2.getYButton()) {
-            rotationArmSubsystem.goUp(0);
+            commandScheduled = true;
+            if (commandScheduled)   {
+                boolean doInterrupt = rotationArmSubsystem.goToAmp();
+                if (doInterrupt)    {
+                    commandScheduled = false;
+                }
+            }
         }
         else if (controller2.getLeftBumper())   {
-            rotationArmSubsystem.goDown(0);
+            commandScheduled = true;
+            if (commandScheduled)   {
+                boolean doInterrupt = rotationArmSubsystem.goToGround();
+                if (doInterrupt)    {
+                    commandScheduled = false;
+                }
+            }
         }
     }
-    
 }
