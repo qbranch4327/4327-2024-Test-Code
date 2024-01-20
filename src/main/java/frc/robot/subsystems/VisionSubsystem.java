@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class VisionSubsystem extends SubsystemBase{
     private final double limelightMountAngle = 0;   // In radians
     private final double limelightMountHeight = 0;  // In 
-    double x;
-    double y;
-    NetworkTableEntry tx;
-    NetworkTableEntry ty;
+    public double x;
+    public double y;
+    public NetworkTableEntry tx;
+    public NetworkTableEntry ty;
 
     public VisionSubsystem() {
     }
