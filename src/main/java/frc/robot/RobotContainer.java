@@ -39,10 +39,12 @@ public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
     private final XboxController driver2 = new XboxController(1);
-    private final ElevatorSubsystem eSub;
-    private final TiltSubsystem tSub;
     private final IntakeSubsystem iSub;
-    private final SpinnerSubsystem sSub;
+    private final WristSubsystem wSub;
+    private final VisionSubsystem vSub;
+    private final RotationArmSubsystem rSub;
+    private final ClimberSubsystem cSub;
+    private final ShooterSubsystem sSub;
     // private final BuddyBarSubsystem bSub;
 
     /* Drive Controls */
@@ -60,9 +62,10 @@ public class RobotContainer {
 
     /* Paths */
     private final autoBuilder autoBuilder;
-    private static final String[] paths = {
-        "Test Auto 2024 v2"
-        };
+    // private static final String[] paths = {
+    //     "Test Auto 2024 v2",
+    //     "P Auto"
+    //     };
 
     private final SendableChooser<Command> autoChooser;
     // SendableChooser<String> qChooser = new SendableChooser<>();
@@ -72,13 +75,16 @@ public class RobotContainer {
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
 
-        this.eSub = new ElevatorSubsystem();
-        this.tSub = new TiltSubsystem();
         this.iSub = new IntakeSubsystem();
-        this.sSub = new SpinnerSubsystem();
+        this.wSub = new WristSubsystem();
+        this.vSub = new VisionSubsystem();
+        this.rSub = new RotationArmSubsystem();
+        this.cSub = new ClimberSubsystem();
+        this.sSub = new ShooterSubsystem();
+
         // this.bSub = new BuddyBarSubsystem();
         //this.vision = new VisionSubsystem();
-        this.autoBuilder = new autoBuilder(s_Swerve, iSub, sSub, eSub);
+        //this.autoBuilder = new autoBuilder(s_Swerve, iSub, sSub);
 
         // Automatically adds paths from the paths array. The path name at index 0 is set to the default.
         // autoChooser.setDefaultOption(paths[0], paths[0]);
@@ -89,11 +95,13 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-        vCommand = new VomitCommand(iSub, sSub);
 
-        eSub.setDefaultCommand(new ElevatorCommand(eSub, tSub, driver2));
-        iSub.setDefaultCommand(new IntakeCommand(iSub, sSub, driver2, driver));
-        // bSub.setDefaultCommand(new BuddyBarCommand(bSub, driver));
+        iSub.setDefaultCommand(new IntakeCommand(iSub, driver2, driver));
+        wSub.setDefaultCommand(new WristCommand(wSub, driver2));
+        //vSub.setDefaultCommand(new VisionCommand);
+        rSub.setDefaultCommand(new RotationArmCommand(rSub, driver2));
+        cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
+        sSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
 
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
@@ -106,10 +114,10 @@ public class RobotContainer {
             )
         );
 
+        NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
+
         // Configure the button bindings
         configureButtonBindings();
-    
-        SmartDashboard.putData("Test Auto 2024 v2", new PathPlannerAuto("Test Auto 2024 v2"));
     }
 
     /**
@@ -121,7 +129,6 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         // zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-        SmartDashboard.putData("Test Auto 2024", new PathPlannerAuto("Test Auto 2024"));
     }
 
     /**
