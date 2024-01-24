@@ -109,7 +109,6 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
     
-        SmartDashboard.putData("Test Auto 2024 v2", new PathPlannerAuto("Test Auto 2024 v2"));
     }
 
     /**
@@ -121,7 +120,6 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         // zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-        SmartDashboard.putData("Test Auto 2024", new PathPlannerAuto("Test Auto 2024"));
     }
 
     /**

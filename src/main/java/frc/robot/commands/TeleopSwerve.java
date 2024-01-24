@@ -46,10 +46,6 @@ public class TeleopSwerve extends Command {
             true
         );
 
-        // if (controller.getRawButton(4)) {
-        //     s_Swerve.balance();
-        // }
-
         if (controller.getRawButton(5))   {
             s_Swerve.zeroGyro();
         }
@@ -65,10 +61,6 @@ public class TeleopSwerve extends Command {
         else {
             speedMultiplier = 1.0;
         }
-
-        // if (controller.getRawButton(2)){
-        //     s_Swerve.reverseGyro();
-        // }
 
     }
 }
