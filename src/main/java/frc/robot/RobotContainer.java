@@ -101,7 +101,7 @@ public class RobotContainer {
         //vSub.setDefaultCommand(new VisionCommand);
         rSub.setDefaultCommand(new RotationArmCommand(rSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
-        sSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
+        sSub.setDefaultCommand(new ShooterCommand(sSub, driver2));
 
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
