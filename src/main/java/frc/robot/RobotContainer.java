@@ -61,7 +61,7 @@ public class RobotContainer {
     private final Swerve s_Swerve = new Swerve();
 
     /* Paths */
-    private final autoBuilder autoBuilder;
+    //private final autoBuilder autoBuilder;
     // private static final String[] paths = {
     //     "Test Auto 2024 v2",
     //     "P Auto"
@@ -70,7 +70,7 @@ public class RobotContainer {
     private final SendableChooser<Command> autoChooser;
     // SendableChooser<String> qChooser = new SendableChooser<>();
 
-    Command autoTest;
+   
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -114,7 +114,7 @@ public class RobotContainer {
             )
         );
 
-        NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
+        //NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
 
         // Configure the button bindings
         configureButtonBindings();

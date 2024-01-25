@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
     
-    CANSparkMax intakeMotor = new CANSparkMax(16, MotorType.kBrushless);
+    CANSparkMax intakeMotor;
 
     public IntakeSubsystem()    {
+        intakeMotor = new CANSparkMax(16, MotorType.kBrushless);
         intakeMotor.setInverted(true);
     }
 

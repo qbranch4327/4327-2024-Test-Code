@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 import com.revrobotics.CANSparkFlex;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,8 +13,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
     public ShooterSubsystem()    {
-        shooterMotor1 = new CANSparkFlex(0,  null);
-        shooterMotor2 = new CANSparkFlex(1, null);
+        shooterMotor1 = new CANSparkFlex(21, MotorType.kBrushless);
+        shooterMotor2 = new CANSparkFlex(22, MotorType.kBrushless);
         shooterServo = new Servo(0);
     }
 

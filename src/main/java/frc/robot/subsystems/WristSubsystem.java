@@ -1,19 +1,20 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
 public class WristSubsystem extends SubsystemBase{
 
-    CANSparkFlex wristMotor = new CANSparkFlex(0, null);
+    CANSparkMax wristMotor;
     DutyCycleEncoder wristEncoder;
 
 
     public WristSubsystem() {
-        wristMotor = new CANSparkFlex(0, null);
-        wristEncoder =new DutyCycleEncoder(0);
+        wristMotor = new CANSparkMax(20, MotorType.kBrushless);
+        wristEncoder =new DutyCycleEncoder(11);
     }
 
 

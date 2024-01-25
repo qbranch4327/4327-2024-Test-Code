@@ -15,8 +15,8 @@ public class RotationArmSubsystem extends SubsystemBase{
     private final double holdingPwr = 0;
 
     public RotationArmSubsystem()   {
-        armMotor = new CANSparkMax(0, MotorType.kBrushless);
-        armEncoder = new DutyCycleEncoder(0);
+        armMotor = new CANSparkMax(24, MotorType.kBrushless);
+        armEncoder = new DutyCycleEncoder(10);
     }
 
     public void goUp(double degrees)  {

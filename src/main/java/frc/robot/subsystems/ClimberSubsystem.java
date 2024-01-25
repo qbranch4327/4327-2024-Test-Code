@@ -11,7 +11,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
 
     public ClimberSubsystem(){
-        climberMotor = new CANSparkMax(0, MotorType.kBrushless);
+        climberMotor = new CANSparkMax(40, MotorType.kBrushless);
     }
 
     
