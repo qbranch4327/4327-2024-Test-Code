@@ -13,15 +13,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
     public ShooterSubsystem()    {
-        shooterMotor1 = new CANSparkFlex(21, MotorType.kBrushless);
-        shooterMotor2 = new CANSparkFlex(22, MotorType.kBrushless);
+        shooterMotor1 = new CANSparkFlex(20, MotorType.kBrushless);
+        shooterMotor2 = new CANSparkFlex(21, MotorType.kBrushless);
         shooterServo = new Servo(0);
     }
 
 
     public void shooterOn() {
         shooterMotor1.set(1);
-        shooterMotor2.set(1); 
+        shooterMotor2.set(-1); 
     }
 
     public void stop()    {

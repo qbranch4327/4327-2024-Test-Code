@@ -13,8 +13,8 @@ public class WristSubsystem extends SubsystemBase{
 
 
     public WristSubsystem() {
-        wristMotor = new CANSparkMax(20, MotorType.kBrushless);
-        wristEncoder =new DutyCycleEncoder(11);
+        wristMotor = new CANSparkMax(15, MotorType.kBrushless);
+        wristEncoder =new DutyCycleEncoder(1);
     }
 
 
