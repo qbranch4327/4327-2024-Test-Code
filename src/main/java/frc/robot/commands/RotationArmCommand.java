@@ -13,19 +13,20 @@ public class RotationArmCommand extends Command {
     public RotationArmCommand(RotationArmSubsystem rotationArmSubsystem, XboxController controller2)    {
         this.rotationArmSubsystem = rotationArmSubsystem;
         this.controller2 = controller2;
+        addRequirements(rotationArmSubsystem);
     }
 
 
     @Override
     public void execute()   {
         if (controller2.getAButton())   {
-            rotationArmSubsystem.goUp();
+            rotationArmSubsystem.goTo(0.099);
         }
         else if (controller2.getYButton()) {
-            rotationArmSubsystem.goDown();;
+            rotationArmSubsystem.goTo(0.961);;
         }
         else if (controller2.getLeftBumper())   {
-            rotationArmSubsystem.goDown();
+            rotationArmSubsystem.goTo(0.291);;
         }
         else    {
             rotationArmSubsystem.stop();
