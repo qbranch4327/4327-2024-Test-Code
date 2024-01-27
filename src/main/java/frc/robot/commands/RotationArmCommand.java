@@ -20,7 +20,7 @@ public class RotationArmCommand extends Command {
     @Override
     public void execute()   {
         if (controller2.getAButton())   {
-            rotationArmSubsystem.goTo(0.099);
+            rotationArmSubsystem.goTo(0.033);
         }
         else if (controller2.getYButton()) {
             rotationArmSubsystem.goTo(0.961);;
