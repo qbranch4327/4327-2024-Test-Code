@@ -19,10 +19,10 @@ public class ClimberCommand extends Command {
 
     @Override
     public void execute(){
-        if (controller2.getYButton()) {
+        if (controller2.getRightY() < -0.2) {
             climberSubsystem.goUp();
         }
-        else if (controller2.getAButton()){
+        else if (controller2.getRightY() > 0.2){
             climberSubsystem.goDown();
         }
         else {

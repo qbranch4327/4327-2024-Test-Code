@@ -18,10 +18,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void intakeOn(boolean forward)  {
         if (forward)    {
-            intakeMotor.set(1);
+            intakeMotor.set(-.4);
         }
         else {
-            intakeMotor.set(-.5);
+            intakeMotor.set(.1);
         }
     }
     

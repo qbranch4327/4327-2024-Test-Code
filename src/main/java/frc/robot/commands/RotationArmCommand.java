@@ -19,13 +19,16 @@ public class RotationArmCommand extends Command {
     @Override
     public void execute()   {
         if (controller2.getAButton())   {
-            rotationArmSubsystem.goTo(0);
+            rotationArmSubsystem.goUp();
         }
         else if (controller2.getYButton()) {
-            rotationArmSubsystem.goUp(0);
+            rotationArmSubsystem.goDown();;
         }
         else if (controller2.getLeftBumper())   {
-            rotationArmSubsystem.goDown(0);
+            rotationArmSubsystem.goDown();
+        }
+        else    {
+            rotationArmSubsystem.stop();
         }
     }
     

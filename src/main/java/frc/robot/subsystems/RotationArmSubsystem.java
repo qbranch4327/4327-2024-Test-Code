@@ -61,4 +61,7 @@ public class RotationArmSubsystem extends SubsystemBase{
         return false;
     }
 
+    public void stop()  {
+        armMotor.stopMotor();
+    }
 }

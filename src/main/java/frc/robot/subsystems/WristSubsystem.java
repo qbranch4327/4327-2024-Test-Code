@@ -51,4 +51,8 @@ public class WristSubsystem extends SubsystemBase{
         return false;
     }
 
+    public void stop()  {
+        wristMotor.stopMotor();
+    }
+
 }
