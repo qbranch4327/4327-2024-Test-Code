@@ -19,10 +19,10 @@ public class WristCommand extends Command   {
     @Override
     public void execute()   {
         if (controller2.getXButton())   {
-            wristSubsystem.goLeft();
+            wristSubsystem.goTo(0);
         }
         else if (controller2.getBButton())  {
-            wristSubsystem.goRight();
+            wristSubsystem.goTo(0);
         }
         else    {
             wristSubsystem.stop();

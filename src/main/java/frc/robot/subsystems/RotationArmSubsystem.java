@@ -12,31 +12,12 @@ public class RotationArmSubsystem extends SubsystemBase{
     
     CANSparkFlex armMotor;
     DutyCycleEncoder armEncoder;
-    private final double holdingPwr = 0;
     private final double encoderOffset = 0.24;
     private final double rangeOffset = 0.03;
 
     public RotationArmSubsystem()   {
         armMotor = new CANSparkFlex(23, MotorType.kBrushless);
         armEncoder = new DutyCycleEncoder(0);
-    }
-
-    public void goUp(double degrees)  {
-        if (armEncoder.getAbsolutePosition() < degrees) {
-            this.goUp();
-        }
-        else    {
-            armMotor.set(holdingPwr);
-        }
-    }
-
-    public void goDown(double degrees) {
-        if (armEncoder.getAbsolutePosition() > degrees) {
-            this.goDown();
-        }
-        else    {
-            armMotor.set(holdingPwr);
-        }
     }
 
     public void goTo(double degrees)  {
@@ -52,11 +33,15 @@ public class RotationArmSubsystem extends SubsystemBase{
     }
 
     public void goUp() {
-        armMotor.set(0.5);
+        armMotor.set(-0.5);
     }
 
     public void goDown()    {
-        armMotor.set(-0.5);
+        armMotor.set(0.5);
+    }
+
+    public void stop()  {
+        armMotor.stopMotor();
     }
 
     public boolean encoderCheck(double distance){
@@ -64,10 +49,6 @@ public class RotationArmSubsystem extends SubsystemBase{
             return true;
         }
         return false;
-    }
-
-    public void stop()  {
-        armMotor.stopMotor();
     }
 
     @Override
