@@ -1,13 +1,5 @@
 package frc.robot.subsystems;
 
-import frc.robot.SwerveModule;
-import frc.robot.Constants;
-
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-
 //import com.ctre.phoenix6.hardware.Pigeon2;
 //import com.ctre.phoenix6.hardware.core.CorePigeon2;
 import com.ctre.phoenix.sensors.WPI_Pigeon2;
@@ -16,10 +8,16 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.SwerveModule;
 
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
@@ -199,6 +197,21 @@ public class Swerve extends SubsystemBase {
         mSwerveMods[1].setDesiredState(new SwerveModuleState(0.1, new Rotation2d(Math.PI * 0.25)), false);
         mSwerveMods[2].setDesiredState(new SwerveModuleState(0.1, new Rotation2d(Math.PI * 0.25)), false);
         mSwerveMods[3].setDesiredState(new SwerveModuleState(0.1, new Rotation2d(Math.PI * 0.75)), false);
+    }
+
+    public void rotateTo(double degrees)    {
+        if  (Math.abs(degrees) == degrees)    {
+            mSwerveMods[0].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 0.75)), false);
+            mSwerveMods[1].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 0.25)), false);
+            mSwerveMods[2].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 1.25)), false);
+            mSwerveMods[3].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 1.75)), false);
+        }   
+        else    {
+            mSwerveMods[0].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 0.75)), false);
+            mSwerveMods[1].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 0.25)), false);
+            mSwerveMods[2].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 1.25)), false);
+            mSwerveMods[3].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 1.75)), false);
+        }
     }
 
     public void slowDown(boolean direction)  {
