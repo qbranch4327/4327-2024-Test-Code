@@ -98,7 +98,7 @@ public class RobotContainer {
 
         iSub.setDefaultCommand(new IntakeCommand(iSub, driver2, driver));
         wSub.setDefaultCommand(new WristCommand(wSub, driver2));
-        //vSub.setDefaultCommand(new VisionCommand);
+        vSub.setDefaultCommand(new VisionCommand(vSub, s_Swerve, driver2));
         rSub.setDefaultCommand(new RotationArmCommand(rSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
         sSub.setDefaultCommand(new ShooterCommand(sSub, driver2));
