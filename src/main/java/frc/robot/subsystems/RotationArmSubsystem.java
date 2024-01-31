@@ -32,12 +32,27 @@ public class RotationArmSubsystem extends SubsystemBase{
         }
     }
 
+    public boolean wentTo(double degrees)  {
+        if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 > (degrees + rangeOffset + encoderOffset) % 1) {
+            this.goUp();
+            return false;
+        }
+        else if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 < (degrees - rangeOffset + encoderOffset) % 1) {
+            this.goDown();
+            return false;
+        }
+        else    {
+            this.stop();
+            return true;
+        }
+    }
+
     public void goUp() {
-        armMotor.set(-0.5);
+        armMotor.set(0.7);
     }
 
     public void goDown()    {
-        armMotor.set(0.5);
+        armMotor.set(-0.7);
     }
 
     public void stop()  {
