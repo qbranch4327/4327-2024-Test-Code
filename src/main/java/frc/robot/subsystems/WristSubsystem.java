@@ -52,7 +52,7 @@ public class WristSubsystem extends SubsystemBase{
 
     @Override
     public void periodic()  {
-        SmartDashboard.putNumber("Arm Encoder", (wristEncoder.getAbsolutePosition()));
+        SmartDashboard.putNumber("Wrist Encoder", (wristEncoder.getAbsolutePosition()));
         SmartDashboard.putNumber("Value", ((wristEncoder.getAbsolutePosition() + encoderOffset) % 1));
     }
 
