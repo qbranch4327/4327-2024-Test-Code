@@ -13,7 +13,7 @@ public class RotationArmSubsystem extends SubsystemBase{
     CANSparkFlex armMotor;
     DutyCycleEncoder armEncoder;
     private final double encoderOffset = 0.24;
-    private final double rangeOffset = 0.03;
+    private final double rangeOffset = 0.02;
 
     public RotationArmSubsystem()   {
         armMotor = new CANSparkFlex(23, MotorType.kBrushless);
