@@ -1,16 +1,18 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSubsystem extends SubsystemBase{
-    private double x;
-    private double y;
-    private NetworkTableEntry tx;
-    private NetworkTableEntry ty;
+    private final double limelightMountAngle = 0;   // In radians
+    private final double limelightMountHeight = 0;  // In 
+    public double x;
+    public double y;
+    public NetworkTableEntry tx;
+    public NetworkTableEntry ty;
 
     public VisionSubsystem() {
     }
@@ -29,4 +31,11 @@ public class VisionSubsystem extends SubsystemBase{
         y = ty.getDouble(0.0);
         publishToDashboard();
     }
+
+    public double distanceFromTarget(double targetHeight) {
+        return (targetHeight - limelightMountHeight) / Math.tan(y + limelightMountAngle);
+    }
+
+    
 }
+   
