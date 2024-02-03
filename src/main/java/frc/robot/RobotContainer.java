@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.RotationArmSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -45,7 +46,6 @@ public class RobotContainer {
     private final RotationArmSubsystem rSub;
     private final ClimberSubsystem cSub;
     private final ShooterSubsystem sSub;
-    // private final BuddyBarSubsystem bSub;
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kRightX.value;
@@ -61,7 +61,7 @@ public class RobotContainer {
     private final Swerve s_Swerve = new Swerve();
 
     /* Paths */
-    private final autoBuilder autoBuilder;
+    //private final autoBuilder autoBuilder;
     // private static final String[] paths = {
     //     "Test Auto 2024 v2",
     //     "P Auto"
@@ -70,7 +70,7 @@ public class RobotContainer {
     private final SendableChooser<Command> autoChooser;
     // SendableChooser<String> qChooser = new SendableChooser<>();
 
-    Command autoTest;
+   
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -101,20 +101,20 @@ public class RobotContainer {
         //vSub.setDefaultCommand(new VisionCommand);
         rSub.setDefaultCommand(new RotationArmCommand(rSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
-        sSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
+        sSub.setDefaultCommand(new ShooterCommand(sSub, driver2));
 
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
                 s_Swerve, 
-                () -> driver.getRawAxis(translationAxis), 
-                () -> -driver.getRawAxis(strafeAxis), 
-                () -> -driver.getRawAxis(rotationAxis), 
+                () -> -driver.getRawAxis(translationAxis), 
+                () -> driver.getRawAxis(strafeAxis), 
+                () -> driver.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean(),
                 driver
             )
         );
 
-        NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
+        //NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
 
         // Configure the button bindings
         configureButtonBindings();

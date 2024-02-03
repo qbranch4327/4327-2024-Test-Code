@@ -1,53 +1,59 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class WristSubsystem extends SubsystemBase{
 
-    CANSparkFlex wristMotor = new CANSparkFlex(0, null);
+    CANSparkMax wristMotor;
     DutyCycleEncoder wristEncoder;
-
+    private final double encoderOffset = 0.24;
+    private final double rangeOffset = 0.03;
 
     public WristSubsystem() {
-        wristMotor = new CANSparkFlex(0, null);
-        wristEncoder =new DutyCycleEncoder(0);
+        wristMotor = new CANSparkMax(15, MotorType.kBrushless);
+        wristEncoder =new DutyCycleEncoder(1);
     }
 
+    public void goTo(double degrees)  {
+        if ((wristEncoder.getAbsolutePosition() + encoderOffset) % 1 > (degrees + rangeOffset + encoderOffset) % 1) {
+            this.goUp();
+        }
+        else if ((wristEncoder.getAbsolutePosition() + encoderOffset) % 1 < (degrees - rangeOffset + encoderOffset) % 1) {
+            this.goDown();
+        }
+        else    {
+            this.stop();
+        }
+    }
 
-    public void goRight(){
+    public void goUp()   {
         wristMotor.set(.5);
     }
 
-    public void goRight(double angle){
-        if (wristEncoder.getDistance() < angle)   {
-            wristMotor.set(0.5);
-        }
-        else if (wristEncoder.getDistance() > angle)   {
-            wristMotor.stopMotor();
-        }
-    }  
-
-    public void goLeft(double angle){
-        if (wristEncoder.getDistance() < angle)   {
-            wristMotor.set(-0.5);
-        }
-        else if (wristEncoder.getDistance() > angle)   {
-            wristMotor.stopMotor();
-        }
-    }  
-
-    public void goLeft(){
+    public void goDown()    {
         wristMotor.set(-.5);
     }
 
-    public boolean encoderCheck(double distance){
+    public void stop()  {
+        wristMotor.stopMotor();
+    }
+
+    public boolean encoderCheck(double distance)    {
         if (wristEncoder.getAbsolutePosition() == distance)  {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void periodic()  {
+        SmartDashboard.putNumber("Arm Encoder", (wristEncoder.getAbsolutePosition()));
+        SmartDashboard.putNumber("Value", ((wristEncoder.getAbsolutePosition() + encoderOffset) % 1));
     }
 
 }

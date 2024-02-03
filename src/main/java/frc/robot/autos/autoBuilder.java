@@ -25,30 +25,18 @@ public class autoBuilder {
     Subsystem[] subsystems;
     AutoBuilder builder;
     IntakeSubsystem iSub;
-    SpinnerSubsystem sSub;
-    ElevatorSubsystem eSub;
-    VomitCommand vomit;
-    AutonIntakeCommand intake;    
     String path;
     HashMap<String, Command> eventMap = new HashMap<>();
 
 
-    public autoBuilder(Swerve swerve, IntakeSubsystem iSub, SpinnerSubsystem sSub, ElevatorSubsystem eSub) {
+    public autoBuilder(Swerve swerve, IntakeSubsystem iSub) {
         this.swerve = swerve;
         this.iSub = iSub;
-        this.sSub = sSub;
-        vomit = new VomitCommand(iSub, sSub); 
-        intake = new AutonIntakeCommand(iSub, swerve);
         subsystems = new Subsystem[]{swerve};
 
         // This is just an example event map. It would be better to have a constant, global event map
         // in your code that will be used by all path following commands.
         HashMap<String, Command> eventMap = new HashMap<>();
-        eventMap.put("vomitCargo", new VomitCommand(iSub, sSub));
-        eventMap.put("elevatorCommand", new AutonElevatorCommand(eSub));
-        eventMap.put("dock", new DockCommand(swerve));
-        eventMap.put("goOver", new GoOverCommand(swerve));
-        eventMap.put("reverseDock", new ReverseDockCommand(swerve));
 
         // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.
         // builder = new AutoBuilder(

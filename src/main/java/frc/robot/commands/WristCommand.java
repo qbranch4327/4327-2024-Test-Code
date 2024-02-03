@@ -1,10 +1,10 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.XboxController;
 
-public class WristCommand extends CommandBase   {
+public class WristCommand extends Command   {
 
     WristSubsystem wristSubsystem;
     XboxController controller2;
@@ -19,10 +19,13 @@ public class WristCommand extends CommandBase   {
     @Override
     public void execute()   {
         if (controller2.getXButton())   {
-            wristSubsystem.goLeft(0);
+            wristSubsystem.goUp();
         }
         else if (controller2.getBButton())  {
-            wristSubsystem.goRight(180);
+            wristSubsystem.goDown();
+        }
+        else    {
+            wristSubsystem.stop();
         }
     }
 
