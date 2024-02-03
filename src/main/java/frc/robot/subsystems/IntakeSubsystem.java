@@ -1,18 +1,16 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
     
-    CANSparkMax intakeMotor;
+    CANSparkFlex intakeMotor;
 
     public IntakeSubsystem()    {
-        intakeMotor = new CANSparkMax(41, MotorType.kBrushless);
+        intakeMotor = new CANSparkFlex(22, MotorType.kBrushless);
         intakeMotor.setInverted(true);
     }
 
