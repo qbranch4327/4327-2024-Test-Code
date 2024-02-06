@@ -17,10 +17,10 @@ public class LEDCommand extends Command {
     @Override
     public void execute()   {
         if (controller2.getStartButton()) {
-            ledSubsystem.fastFlash();
+            ledSubsystem.set(0.07);
         }
         else    {
-            ledSubsystem.solid();
+            ledSubsystem.set(0.57);
         }
     }
 }

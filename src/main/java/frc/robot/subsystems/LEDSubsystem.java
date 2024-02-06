@@ -13,22 +13,7 @@ public class LEDSubsystem extends SubsystemBase {
         LED = new Spark(1);
     }
 
-    public void slowFlash()     {
-        LED.set(.03);
-    }
-
-    public void fastFlash()     {
-        LED.set(0.07);
-    }
-
-    public void noteFlash()     {
-        LED.set(0);
-    }
-
-    public void shotFlash()     {
-        LED.set(0);
-    }
-    public void solid()     {
-        LED.set(.57);
+    public void set(double powerInput)     {
+        LED.set(powerInput);
     }
 }
