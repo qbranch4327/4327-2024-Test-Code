@@ -37,6 +37,29 @@ public class WristSubsystem extends SubsystemBase{
         }
     }
 
+    public boolean wentTo(double encoderGoal, double extremaValue)  {
+        if (encoderGoal > extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)   {
+            this.goDown();
+            return false;
+        }
+        else if (encoderGoal > extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)    {
+            this.goUp();
+            return false;
+        }
+        else if (encoderGoal < extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)  {
+            this.goUp();
+            return false;
+        }
+        else if (encoderGoal < extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)  {
+            this.goDown();
+            return false;
+        }
+        else    {
+            this.stop();
+            return true;
+        }
+    }
+
     public void goUp()   {
         wristMotor.set(-.2);
     }
