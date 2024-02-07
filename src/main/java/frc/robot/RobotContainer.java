@@ -46,6 +46,7 @@ public class RobotContainer {
     private final RotationArmSubsystem rSub;
     private final ClimberSubsystem cSub;
     private final ShooterSubsystem sSub;
+    private final LEDSubsystem lSub;
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kRightX.value;
@@ -81,6 +82,7 @@ public class RobotContainer {
         this.rSub = new RotationArmSubsystem();
         this.cSub = new ClimberSubsystem();
         this.sSub = new ShooterSubsystem();
+        this.lSub = new LEDSubsystem();
 
         // this.bSub = new BuddyBarSubsystem();
         //this.vision = new VisionSubsystem();
@@ -101,6 +103,8 @@ public class RobotContainer {
         rSub.setDefaultCommand(new RotationArmCommand(rSub, wSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
         sSub.setDefaultCommand(new ShooterCommand(sSub, driver2));
+        lSub.setDefaultCommand(new LEDCommand(lSub, driver2, sSub, iSub));
+
 
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
