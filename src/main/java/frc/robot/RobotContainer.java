@@ -98,7 +98,7 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", autoChooser);
 
 
-        iSub.setDefaultCommand(new IntakeCommand(iSub, driver2, driver));
+        iSub.setDefaultCommand(new IntakeCommand(iSub, driver2));
         //vSub.setDefaultCommand(new VisionCommand);
         rSub.setDefaultCommand(new RotationArmCommand(rSub, wSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));

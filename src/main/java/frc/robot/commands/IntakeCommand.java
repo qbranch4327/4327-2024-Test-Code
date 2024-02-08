@@ -11,24 +11,17 @@ public class IntakeCommand extends Command {
     Joystick controller1;
     XboxController controller2;
 
-    public IntakeCommand(IntakeSubsystem intakeSubsystem, XboxController controller2, Joystick controller1)  {
+    public IntakeCommand(IntakeSubsystem intakeSubsystem, XboxController controller2)  {
         this.intakeSubsystem = intakeSubsystem;
-        this.controller1 = controller1;
         this.controller2 = controller2;
         addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute()   {
-        if (controller1.getRawButton(6)) {
-            intakeSubsystem.intakeOn(true);
-        }
-        else if (controller2.getRightBumper())   {
+        if (controller2.getRightBumper())   {
             intakeSubsystem.intakeOn(true);
          }
-        else if (controller2.getLeftY() < -.2){
-            intakeSubsystem.intakeSlow(true);
-        }
         else if (controller2.getLeftY() > .2){
             intakeSubsystem.intakeOn(false);
         }
