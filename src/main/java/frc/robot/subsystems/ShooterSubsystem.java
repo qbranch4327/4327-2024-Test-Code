@@ -41,8 +41,8 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterServo.setSpeed(0);
     }
 
-    @Override
-    public void periodic()  {
-        SmartDashboard.putBoolean("Sensor", sensor.get());
-    }
+   @Override
+   public void periodic()  {
+       SmartDashboard.putBoolean("Sensor", sensor.get());
+   }
 }

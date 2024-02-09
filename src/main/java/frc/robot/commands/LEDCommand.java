@@ -18,20 +18,20 @@ public class LEDCommand extends Command {
         this.intakeSubsystem = intakeSubsystem;
         this.controller2 = controller2;
         addRequirements(ledSubsystem);
-        addRequirements(shooterSubsystem);
-        addRequirements(intakeSubsystem);
+        // addRequirements(shooterSubsystem);
+        // addRequirements(intakeSubsystem);
     }
     
     @Override
     public void execute()   {
         if (!shooterSubsystem.sensor.get()) {
-            ledSubsystem.set(0.73);
+           ledSubsystem.set(0.73);
         }
-        // else if (!intakeSubsystem.sensor.get()) {
-        //     ledSubsystem.set(0.65);
-        // }
+        else if (!intakeSubsystem.sensor.get()) {
+            ledSubsystem.set(0.65);
+        }
         else    {
-            ledSubsystem.set(0.57);
+           ledSubsystem.set(0.57);
         }
     }
 }
