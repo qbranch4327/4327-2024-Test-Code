@@ -117,7 +117,9 @@ public class RobotContainer {
             )
         );
 
-        //NamedCommands.registerCommand("ExampleCommand", new ExampleCommand(s_Swerve));
+        NamedCommands.registerCommand("AutonArmCommand", new AutonArmCommand(rSub, s_Swerve, wSub, iSub, sSub));
+        NamedCommands.registerCommand("AutonShooterCommand", new AutonShootingCommand(sSub));
+
 
         // Configure the button bindings
         configureButtonBindings();
