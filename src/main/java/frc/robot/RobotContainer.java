@@ -1,34 +1,21 @@
 package frc.robot;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.pathplanner.lib.commands.PathPlannerAuto;
-import com.pathplanner.lib.path.GoalEndState;
-import com.pathplanner.lib.path.PathConstraints;
-import com.pathplanner.lib.path.PathPlannerPath;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.math.Pair;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.autos.*;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.RotationArmSubsystem;
+import frc.robot.commands.AutonCommands.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -117,9 +104,17 @@ public class RobotContainer {
             )
         );
 
-        NamedCommands.registerCommand("AutonArmCommand", new AutonArmCommand(rSub, s_Swerve, wSub, iSub, sSub));
-        NamedCommands.registerCommand("AutonShooterCommand", new AutonShootingCommand(sSub));
+        List<Pair<String, Command>> commands = new ArrayList<Pair<String, Command>>()    {{
+            add(new Pair<String,Command>("AutonArmDownCommand", new AutonArmDownCommand(rSub, wSub)));
+            add(new Pair<String,Command>("AutonArmUpCommand", new AutonArmUpCommand(rSub, wSub)));
+            add(new Pair<String,Command>("AutonIntakeCommand", new AutonIntakeCommand(iSub)));
+            add(new Pair<String,Command>("AutonTimedIntakeCommand", new AutonTimedIntakeCommand(iSub)));
+            add(new Pair<String,Command>("AutonShooterCommand", new AutonShooterCommand(sSub)));
+            add(new Pair<String,Command>("AutonServoCommand", new AutonServoCommand(sSub)));
+        }};
 
+        NamedCommands.registerCommands(commands);
+        //NamedCommands.registerCommand("AutonArmDownCommand", new AutonArmDownCommand(rSub, wSub));
 
         // Configure the button bindings
         configureButtonBindings();
