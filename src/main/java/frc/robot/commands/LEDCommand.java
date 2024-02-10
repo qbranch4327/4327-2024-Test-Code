@@ -18,8 +18,6 @@ public class LEDCommand extends Command {
         this.intakeSubsystem = intakeSubsystem;
         this.controller2 = controller2;
         addRequirements(ledSubsystem);
-        addRequirements(shooterSubsystem);
-        addRequirements(intakeSubsystem);
     }
     
     @Override
