@@ -1,4 +1,5 @@
 package frc.robot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,18 +50,18 @@ public class RobotContainer {
     private final Swerve s_Swerve = new Swerve();
 
     /* Paths */
-    //private final autoBuilder autoBuilder;
+    // private final autoBuilder autoBuilder;
     // private static final String[] paths = {
-    //     "Test Auto 2024 v2",
-    //     "P Auto"
-    //     };
+    // "Test Auto 2024 v2",
+    // "P Auto"
+    // };
 
     private final SendableChooser<Command> autoChooser;
     // SendableChooser<String> qChooser = new SendableChooser<>();
 
-   
-
-    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    /**
+     * The container for the robot. Contains subsystems, OI devices, and commands.
+     */
     public RobotContainer() {
 
         this.iSub = new IntakeSubsystem();
@@ -71,59 +72,53 @@ public class RobotContainer {
         this.sSub = new ShooterSubsystem();
         this.lSub = new LEDSubsystem();
 
-        // this.bSub = new BuddyBarSubsystem();
-        //this.vision = new VisionSubsystem();
-        //this.autoBuilder = new autoBuilder(s_Swerve, iSub, sSub);
+        NamedCommands.registerCommand("AutonArmDownCommand", new AutonArmDownCommand(rSub, wSub));
+        NamedCommands.registerCommand("AutonArmUpCommand", new AutonArmUpCommand(rSub, wSub));
+        NamedCommands.registerCommand("AutonIntakeCommand", new AutonIntakeCommand(iSub));
+        NamedCommands.registerCommand("AutonTimedIntakeCommand", new AutonTimedIntakeCommand(iSub));
+        NamedCommands.registerCommand("AutonShooterCommand", new AutonShooterCommand(sSub));
+        NamedCommands.registerCommand("AutonServoCommand", new AutonServoCommand(sSub));
 
-        // Automatically adds paths from the paths array. The path name at index 0 is set to the default.
+        // this.bSub = new BuddyBarSubsystem();
+        // this.vision = new VisionSubsystem();
+        // this.autoBuilder = new autoBuilder(s_Swerve, iSub, sSub);
+
+        // Automatically adds paths from the paths array. The path name at index 0 is
+        // set to the default.
         // autoChooser.setDefaultOption(paths[0], paths[0]);
-        // for(int i = 1; i < paths.length; i++)  {
-        //     autoChooser.addOption(paths[i], paths[i]);
+        // for(int i = 1; i < paths.length; i++) {
+        // autoChooser.addOption(paths[i], paths[i]);
         // }
-        
+
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Mode", autoChooser);
 
-
         iSub.setDefaultCommand(new IntakeCommand(iSub, driver2, driver));
-        //vSub.setDefaultCommand(new VisionCommand);
+        // vSub.setDefaultCommand(new VisionCommand);
         rSub.setDefaultCommand(new RotationArmCommand(rSub, wSub, driver2));
         cSub.setDefaultCommand(new ClimberCommand(cSub, driver2));
         sSub.setDefaultCommand(new ShooterCommand(sSub, driver2));
         lSub.setDefaultCommand(new LEDCommand(lSub, driver2, sSub, iSub));
 
-
         s_Swerve.setDefaultCommand(
-            new TeleopSwerve(
-                s_Swerve, 
-                () -> -driver.getRawAxis(translationAxis), 
-                () -> driver.getRawAxis(strafeAxis), 
-                () -> driver.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean(),
-                driver
-            )
-        );
-
-        List<Pair<String, Command>> commands = new ArrayList<Pair<String, Command>>()    {{
-            add(new Pair<String,Command>("AutonArmDownCommand", new AutonArmDownCommand(rSub, wSub)));
-            add(new Pair<String,Command>("AutonArmUpCommand", new AutonArmUpCommand(rSub, wSub)));
-            add(new Pair<String,Command>("AutonIntakeCommand", new AutonIntakeCommand(iSub)));
-            add(new Pair<String,Command>("AutonTimedIntakeCommand", new AutonTimedIntakeCommand(iSub)));
-            add(new Pair<String,Command>("AutonShooterCommand", new AutonShooterCommand(sSub)));
-            add(new Pair<String,Command>("AutonServoCommand", new AutonServoCommand(sSub)));
-        }};
-
-        NamedCommands.registerCommands(commands);
-        //NamedCommands.registerCommand("AutonArmDownCommand", new AutonArmDownCommand(rSub, wSub));
+                new TeleopSwerve(
+                        s_Swerve,
+                        () -> -driver.getRawAxis(translationAxis),
+                        () -> driver.getRawAxis(strafeAxis),
+                        () -> driver.getRawAxis(rotationAxis),
+                        () -> robotCentric.getAsBoolean(),
+                        driver));
 
         // Configure the button bindings
         configureButtonBindings();
     }
 
     /**
-     * Use this method to define your button->command mappings. Buttons can be created by
+     * Use this method to define your button->command mappings. Buttons can be
+     * created by
      * instantiating a {@link GenericHID} or one of its subclasses ({@link
-     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
+     * it to a {@link
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
@@ -138,7 +133,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        //String selection = autoChooser.getSelected();
+        // String selection = autoChooser.getSelected();
         return autoChooser.getSelected();
     }
 }

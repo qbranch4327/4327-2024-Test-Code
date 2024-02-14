@@ -10,7 +10,7 @@ public class AutonServoCommand extends Command  {
     Timer timer;
 
     public AutonServoCommand(ShooterSubsystem shooterSubsystem)   {
-        this.shooterSubsystem = new ShooterSubsystem();
+        this.shooterSubsystem = shooterSubsystem;
         timer = new Timer();
         addRequirements(shooterSubsystem);
     }

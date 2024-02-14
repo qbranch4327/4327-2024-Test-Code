@@ -1,0 +1,37 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.4642586550130365,
+      "y": 5.5196408968316515
+    },
+    "rotation": 0.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonShooterCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonServoCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "1-Note Path B"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

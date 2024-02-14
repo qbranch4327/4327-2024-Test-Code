@@ -14,7 +14,6 @@ public class ShooterCommand extends Command {
         this.shooterSubsystem = shooterSubsytem;
         this.controller2 = controller2;
         addRequirements(shooterSubsytem);
-
     }
 
     @Override

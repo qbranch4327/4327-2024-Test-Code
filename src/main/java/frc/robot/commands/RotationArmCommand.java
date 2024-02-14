@@ -25,15 +25,15 @@ public class RotationArmCommand extends Command {
     public void execute()   {
         if (controller2.getAButton())   {
             rotationArmSubsystem.goTo(0.043);
-            wristSubsystem.goTo(0.367, 0.1);
+            wristSubsystem.goTo(0.11, 0.78);
         }
         else if (controller2.getYButton()) {
             rotationArmSubsystem.goTo(0.961);
-            wristSubsystem.goTo(0.1, 0.367);
+            wristSubsystem.goTo(0.78, 0.367);
         }
         else if (controller2.getLeftBumper())   {
             rotationArmSubsystem.goTo(0.291);
-            wristSubsystem.goTo(0.367, 0.1);
+            wristSubsystem.goTo(0.057, 0.78);
         }
         else if (controller2.getXButton())   {
             wristSubsystem.goUp();

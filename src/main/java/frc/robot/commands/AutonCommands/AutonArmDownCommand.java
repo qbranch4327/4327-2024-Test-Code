@@ -20,7 +20,7 @@ public class AutonArmDownCommand extends Command    {
 
     @Override
     public void execute()   {
-        if (rotationArmSubsystem.wentTo(0.291) && wristSubsystem.wentTo(0.367, 0.1)) {
+        if (rotationArmSubsystem.wentTo(0.291) && wristSubsystem.wentTo(0.057, 0.78)) {
             isItFinished = true;
         }
     }

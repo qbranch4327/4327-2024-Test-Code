@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class WristSubsystem extends SubsystemBase{
-
     CANSparkFlex wristMotor;
     DutyCycleEncoder wristEncoder;
     private final double rangeOffset = 0.03;
+    private final double encoderOffset = 0.3;
 
     public WristSubsystem() {
         wristMotor = new CANSparkFlex(25, MotorType.kBrushless);
@@ -20,16 +20,16 @@ public class WristSubsystem extends SubsystemBase{
     }
 
     public void goTo(double encoderGoal, double extremaValue)  {
-        if (encoderGoal > extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)   {
+        if ((encoderGoal + encoderOffset) % 1 > (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 < (encoderGoal - rangeOffset + encoderOffset) % 1)   {
             this.goDown();
         }
-        else if (encoderGoal > extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)    {
+        else if ((encoderGoal + encoderOffset) % 1 > (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 > (encoderGoal + rangeOffset + encoderOffset) % 1)    {
             this.goUp();
         }
-        else if (encoderGoal < extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)  {
+        else if ((encoderGoal + encoderOffset) % 1 < (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 > (encoderGoal + rangeOffset + encoderOffset) % 1)  {
             this.goUp();
         }
-        else if (encoderGoal < extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)  {
+        else if ((encoderGoal + encoderOffset) % 1 < (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 < (encoderGoal - rangeOffset + encoderOffset) % 1)  {
             this.goDown();
         }
         else    {
@@ -38,19 +38,19 @@ public class WristSubsystem extends SubsystemBase{
     }
 
     public boolean wentTo(double encoderGoal, double extremaValue)  {
-        if (encoderGoal > extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)   {
+        if ((encoderGoal + encoderOffset) % 1 > (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 < (encoderGoal - rangeOffset + encoderOffset) % 1)   {
             this.goDown();
             return false;
         }
-        else if (encoderGoal > extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)    {
+        else if ((encoderGoal + encoderOffset) % 1 > (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 > (encoderGoal + rangeOffset + encoderOffset) % 1)    {
             this.goUp();
             return false;
         }
-        else if (encoderGoal < extremaValue && wristEncoder.get() > encoderGoal + rangeOffset)  {
+        else if ((encoderGoal + encoderOffset) % 1 < (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 > (encoderGoal + rangeOffset + encoderOffset) % 1)  {
             this.goUp();
             return false;
         }
-        else if (encoderGoal < extremaValue && wristEncoder.get() < encoderGoal - rangeOffset)  {
+        else if ((encoderGoal + encoderOffset) % 1 < (extremaValue + encoderOffset) % 1 && (wristEncoder.get() + encoderOffset) % 1 < (encoderGoal - rangeOffset + encoderOffset) % 1)  {
             this.goDown();
             return false;
         }
@@ -83,5 +83,4 @@ public class WristSubsystem extends SubsystemBase{
     public void periodic()  {
         SmartDashboard.putNumber("Wrist Encoder", (wristEncoder.getAbsolutePosition()));
     }
-
 }

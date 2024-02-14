@@ -1,0 +1,55 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.4408703461281565,
+      "y": 6.338231707802447
+    },
+    "rotation": -31.55000000000001
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonShooterCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonServoCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "2-Note Path A"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonTimedIntakeCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonShooterCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonServoCommand"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

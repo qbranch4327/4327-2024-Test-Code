@@ -11,9 +11,15 @@ public class AutonTimedIntakeCommand extends Command {
 
     public AutonTimedIntakeCommand(IntakeSubsystem intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
+        timer = new Timer();
         addRequirements(intakeSubsystem);
     }
     
+    @Override
+    public void initialize()    {
+        timer.restart();
+    }
+
     @Override
     public void execute()   {
         intakeSubsystem.intakeOn(true);
