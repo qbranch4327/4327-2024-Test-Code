@@ -25,9 +25,9 @@ public class LEDCommand extends Command {
         if (!shooterSubsystem.sensor.get()) {
             ledSubsystem.set(0.73);
         }
-        // else if (!intakeSubsystem.sensor.get()) {
-        //     ledSubsystem.set(0.65);
-        // }
+        else if (!intakeSubsystem.sensor.get()) {
+            ledSubsystem.set(0.65);
+        }
         else    {
             ledSubsystem.set(0.57);
         }

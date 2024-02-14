@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,15 +17,15 @@ public class ClimberSubsystem extends SubsystemBase {
 
     
     public void goUp()  {
-        climberMotor.set(ControlMode.PercentOutput, -1);
+        climberMotor.set(-1);
     }
     
     public void goDown(){
-        climberMotor.set(ControlMode.PercentOutput, 0.5);
+        climberMotor.set(0.5);
     }
 
     public void stop()    {
-        climberMotor.set(ControlMode.PercentOutput, 0);
+        climberMotor.set(0);
     }
 
 }

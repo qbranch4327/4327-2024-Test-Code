@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
             intakeMotor.set(-.4);
         }
         else {
-            intakeMotor.set(.1);
+            intakeMotor.set(1);
         }
     }
     
@@ -33,7 +33,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void intakeSlow(boolean forward)  {
         if (forward)    {
-            intakeMotor.set(.3);
+            intakeMotor.set(.2);
+        }
+        else    {
+            intakeMotor.set(-.2);
         }
     }
 

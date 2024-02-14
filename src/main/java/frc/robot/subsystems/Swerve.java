@@ -149,29 +149,6 @@ public class Swerve extends SubsystemBase {
         return (float) gyro.getPitch();
     }
 
-    // public void balance()   {
-    //     boolean start = false ;
-    //     boolean reverse = false;
-    //     if (gyro.getRoll() < -13)    {
-    //         slowDown(true);
-    //         start = true;
-    //     }
-    //     else if (gyro.getRoll() > -12 && start && !reverse)    {
-    //         xStance();
-    //         start = false;
-    //     }
-    //     if (gyro.getRoll() > 13)    {
-    //         slowDown(false);
-    //         start = true;
-    //         reverse = true;
-    //     }
-    //     else if (gyro.getRoll() < 12 && start && reverse){
-    //         xStance();
-    //         start = false;
-    //         reverse = false;
-    //     }
-    // }
-
     public void zeroGyro(){
         gyro.reset();
     }

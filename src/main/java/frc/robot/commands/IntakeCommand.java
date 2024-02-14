@@ -20,16 +20,13 @@ public class IntakeCommand extends Command {
 
     @Override
     public void execute()   {
-        if (controller1.getRawButton(6)) {
+        if (controller2.getRightBumper())   {
             intakeSubsystem.intakeOn(true);
         }
-        else if (controller2.getRightBumper())   {
-            intakeSubsystem.intakeOn(true);
-         }
-        else if (controller2.getLeftY() < -.2){
-            intakeSubsystem.intakeSlow(true);
+        else if (controller2.getLeftY() > .2 || controller2.getLeftY() < -.2)   {
+            intakeSubsystem.intakeSlow(false);
         }
-        else if (controller2.getLeftY() > .2){
+        else if (controller2.getBackButton())   {
             intakeSubsystem.intakeOn(false);
         }
         else    {
