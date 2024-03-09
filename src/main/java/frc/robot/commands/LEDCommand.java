@@ -22,11 +22,11 @@ public class LEDCommand extends Command {
     
     @Override
     public void execute()   {
-        if (!shooterSubsystem.sensor.get()) {
-            ledSubsystem.set(0.73);
-        }
-        else if (!intakeSubsystem.sensor.get()) {
+        if (!intakeSubsystem.sensor.get()) {
             ledSubsystem.set(0.65);
+        }
+        else if (!shooterSubsystem.sensor.get()) {
+            ledSubsystem.set(0.73);
         }
         else    {
             ledSubsystem.set(0.57);

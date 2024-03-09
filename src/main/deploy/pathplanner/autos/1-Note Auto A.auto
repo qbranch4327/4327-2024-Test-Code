@@ -5,7 +5,7 @@
       "x": 0.8818897637795293,
       "y": 6.830134620269241
     },
-    "rotation": -31.55000000000001
+    "rotation": -120.13999999999999
   },
   "command": {
     "type": "sequential",
@@ -18,9 +18,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "AutonServoCommand"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 8.0
           }
         },
         {

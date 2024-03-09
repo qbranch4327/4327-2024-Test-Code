@@ -4,15 +4,15 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RotationArmSubsystem extends SubsystemBase{
-    
     CANSparkFlex armMotor;
     DutyCycleEncoder armEncoder;
-    private final double encoderOffset = 0.24;
+    private final double encoderOffset = 0.2;
     private final double rangeOffset = 0.02;
 
     public RotationArmSubsystem()   {
@@ -21,11 +21,13 @@ public class RotationArmSubsystem extends SubsystemBase{
     }
 
     public void goTo(double degrees)  {
-        if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 > (degrees + rangeOffset + encoderOffset) % 1) {
-            this.goUp();
+        var position = (armEncoder.getAbsolutePosition() + encoderOffset) % 1;
+        
+        if (position > (degrees + rangeOffset + encoderOffset) % 1) {
+            this.goUp(0.9);
         }
-        else if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 < (degrees - rangeOffset + encoderOffset) % 1) {
-            this.goDown();
+        else if (position < (degrees - rangeOffset + encoderOffset) % 1) {
+            this.goDown(0.9);
         }
         else    {
             this.stop();
@@ -33,12 +35,15 @@ public class RotationArmSubsystem extends SubsystemBase{
     }
 
     public boolean wentTo(double degrees)  {
-        if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 > (degrees + rangeOffset + encoderOffset) % 1) {
-            this.goUp();
+        var pos = (armEncoder.getAbsolutePosition() + encoderOffset) % 1;
+        var target = (degrees + rangeOffset + encoderOffset) % 1;
+        System.out.println("position: " + pos + ", target: " + target);
+        if (pos > target) {
+            this.goUp(0.5);
             return false;
         }
         else if ((armEncoder.getAbsolutePosition() + encoderOffset) % 1 < (degrees - rangeOffset + encoderOffset) % 1) {
-            this.goDown();
+            this.goDown(0.9);
             return false;
         }
         else    {
@@ -47,12 +52,15 @@ public class RotationArmSubsystem extends SubsystemBase{
         }
     }
 
-    public void goUp() {
-        armMotor.set(0.7);
+    public void goUp(double speed) {
+        // PIDController pid = new PIDController(0, 0, 0);
+        // pid.setTolerance(posTolerance, velocityTolerance);
+        // var pidSpeed = pid.calculate(armEncoder.getAbsolutePosition(), setpoint);
+        armMotor.set(speed);
     }
 
-    public void goDown()    {
-        armMotor.set(-0.7);
+    public void goDown(double speed)    {
+        armMotor.set(-speed);
     }
 
     public void stop()  {

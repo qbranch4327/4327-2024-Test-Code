@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4525645005705963,
-      "y": 4.712744240303296
+      "x": 0.9263275506607991,
+      "y": 4.408696224799858
     },
     "rotation": -60.0
   },
@@ -18,9 +18,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "AutonServoCommand"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 9.0
           }
         },
         {

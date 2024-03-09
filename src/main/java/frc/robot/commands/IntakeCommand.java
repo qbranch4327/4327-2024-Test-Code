@@ -20,7 +20,7 @@ public class IntakeCommand extends Command {
 
     @Override
     public void execute()   {
-        if (controller2.getRightBumper())   {
+        if (controller2.getRightBumper() && !controller2.getStartButton())   {
             intakeSubsystem.intakeOn(true);
         }
         else if (controller2.getLeftY() > .2 || controller2.getLeftY() < -.2)   {
@@ -28,6 +28,9 @@ public class IntakeCommand extends Command {
         }
         else if (controller2.getBackButton())   {
             intakeSubsystem.intakeOn(false);
+        }
+        else if (controller2.getStartButton() && controller2.getRightBumper() && intakeSubsystem.sensor.get())  {
+            intakeSubsystem.intakeOn(true);
         }
         else    {
           intakeSubsystem.intakeOff();

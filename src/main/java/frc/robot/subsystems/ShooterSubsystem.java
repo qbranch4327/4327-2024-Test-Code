@@ -37,6 +37,10 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterServo.setSpeed(1);
     }
 
+    public void unstuck()   {
+        shooterServo.setSpeed(-1);
+    }
+
     public void resetServo()  {
         shooterServo.setSpeed(0);
     }

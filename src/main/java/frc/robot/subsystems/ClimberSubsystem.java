@@ -14,14 +14,13 @@ public class ClimberSubsystem extends SubsystemBase {
     public ClimberSubsystem(){
         climberMotor = new TalonFX(40);
     }
-
     
     public void goUp()  {
-        climberMotor.set(-1);
+        climberMotor.set(0.5);
     }
     
     public void goDown(){
-        climberMotor.set(0.5);
+        climberMotor.set(-1);
     }
 
     public void stop()    {

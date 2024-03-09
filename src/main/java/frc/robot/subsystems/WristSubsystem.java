@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class WristSubsystem extends SubsystemBase{
+public class WristSubsystem extends SubsystemBase   {
     CANSparkFlex wristMotor;
     DutyCycleEncoder wristEncoder;
     private final double rangeOffset = 0.03;
@@ -61,11 +61,11 @@ public class WristSubsystem extends SubsystemBase{
     }
 
     public void goUp()   {
-        wristMotor.set(-.2);
+        wristMotor.set(-.1);
     }
 
     public void goDown()    {
-        wristMotor.set(.2);
+        wristMotor.set(.1);
     }
 
     public void stop()  {

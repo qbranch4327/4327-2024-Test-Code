@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4525645005705963,
-      "y": 4.712744240303296
+      "x": 1.4057878828008366,
+      "y": 4.853074093612575
     },
     "rotation": -30.0
   },
@@ -26,19 +26,49 @@
         {
           "type": "path",
           "data": {
-            "pathName": "2-Note Path C"
+            "pathName": "2-Note Path C (1)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auton180Command"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonArmDownCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonDriveCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonArmUpCommand"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auton180Command"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "2-Note Path C (2)"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "AutonTimedIntakeCommand"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutonShooterCommand"
           }
         },
         {

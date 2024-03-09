@@ -27,7 +27,8 @@ public class AutonServoCommand extends Command  {
 
     @Override
     public boolean isFinished() {
-        if (timer.get() >= 3) {
+        if (timer.get() > 2.15) {
+            shooterSubsystem.resetServo();
             return true;
         }
         return false;

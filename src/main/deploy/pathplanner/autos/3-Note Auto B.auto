@@ -18,12 +18,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "AutonServoCommand"
@@ -38,43 +32,25 @@
         {
           "type": "named",
           "data": {
-            "name": "Auton180Command"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutonArmDownCommand"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutonDriveCommand"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutonArmUpCommand"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auton180Command"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
             "name": "AutonTimedIntakeCommand"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "AutonReturnCommand"
+            "name": "AutonServoCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3-Note Path B"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutonTimedIntakeCommand"
           }
         },
         {

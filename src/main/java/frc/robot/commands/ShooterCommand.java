@@ -28,6 +28,9 @@ public class ShooterCommand extends Command {
         if (controller2.getRightTriggerAxis() > 0.2)    {
             shooterSubsystem.shoot();
         }
+        else if (controller2.getBackButton())   {
+            shooterSubsystem.unstuck();
+        }
         else    {
             shooterSubsystem.resetServo();
         }

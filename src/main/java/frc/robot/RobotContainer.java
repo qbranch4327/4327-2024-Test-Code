@@ -78,6 +78,9 @@ public class RobotContainer {
         NamedCommands.registerCommand("AutonTimedIntakeCommand", new AutonTimedIntakeCommand(iSub));
         NamedCommands.registerCommand("AutonShooterCommand", new AutonShooterCommand(sSub));
         NamedCommands.registerCommand("AutonServoCommand", new AutonServoCommand(sSub));
+        NamedCommands.registerCommand("Auton180Command", new Auton180Command(s_Swerve));
+        NamedCommands.registerCommand("AutonDriveCommand", new AutonDriveCommand(s_Swerve, iSub));
+        NamedCommands.registerCommand("AutonReturnCommand", new AutonReturnCommand(s_Swerve));
 
         // this.bSub = new BuddyBarSubsystem();
         // this.vision = new VisionSubsystem();

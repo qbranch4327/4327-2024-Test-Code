@@ -9,18 +9,34 @@ public class AutonArmDownCommand extends Command    {
     RotationArmSubsystem rotationArmSubsystem;
     WristSubsystem wristSubsystem;
     boolean isItFinished;
+    boolean wristFinished;
+    boolean armFinished;
 
     public AutonArmDownCommand(RotationArmSubsystem rotationArmSubsystem, WristSubsystem wristSubsystem) {
         this.rotationArmSubsystem = rotationArmSubsystem;
         this.wristSubsystem = wristSubsystem;
-        isItFinished = false;
         addRequirements(rotationArmSubsystem);
         addRequirements(wristSubsystem);
     }
 
     @Override
+    public void initialize()    {
+        isItFinished = false;
+        armFinished = false;
+        wristFinished = false;
+    }
+
+    @Override
     public void execute()   {
-        if (rotationArmSubsystem.wentTo(0.291) && wristSubsystem.wentTo(0.057, 0.78)) {
+        if (!armFinished && rotationArmSubsystem.wentTo(0.24)) {
+            rotationArmSubsystem.stop();
+            armFinished = true;
+        }
+        if (!wristFinished && wristSubsystem.wentTo(0.057, 0.78)) {
+            wristSubsystem.stop();
+            wristFinished = true;
+        }
+        if (armFinished && wristFinished) {
             isItFinished = true;
         }
     }

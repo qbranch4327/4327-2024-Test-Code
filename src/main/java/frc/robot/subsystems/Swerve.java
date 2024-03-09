@@ -26,7 +26,7 @@ public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
     // private AHRS gyro; 
-    private WPI_Pigeon2 gyro; 
+    public WPI_Pigeon2 gyro; 
 
     public Swerve() {
         // gyro = new AHRS(I2C.Port.kOnboard); // use w/ I2C
@@ -186,26 +186,28 @@ public class Swerve extends SubsystemBase {
         mSwerveMods[3].setDesiredState(new SwerveModuleState(0.1, new Rotation2d(Math.PI * 0.75)), false);
     }
 
-    public void rotateTo(double degrees)    {
-        if  (Math.abs(degrees) == degrees)    {
-            mSwerveMods[0].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 0.75)), false);
-            mSwerveMods[1].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 0.25)), false);
-            mSwerveMods[2].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 1.25)), false);
-            mSwerveMods[3].setDesiredState(new SwerveModuleState(2, new Rotation2d(Math.PI * 1.75)), false);
-        }   
-        else    {
-            mSwerveMods[0].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 0.75)), false);
-            mSwerveMods[1].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 0.25)), false);
-            mSwerveMods[2].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 1.25)), false);
-            mSwerveMods[3].setDesiredState(new SwerveModuleState(-2, new Rotation2d(Math.PI * 1.75)), false);
-        }
-    }
+    public boolean rotateTo(double degrees)    { // Degre values 0-360
 
-    public void goForward() {
-        mSwerveMods[0].setDesiredState(new SwerveModuleState(-0.5, new Rotation2d(Math.PI * 0)), false);
-        mSwerveMods[1].setDesiredState(new SwerveModuleState(-0.5, new Rotation2d(Math.PI * 0)), false);
-        mSwerveMods[2].setDesiredState(new SwerveModuleState(-0.5, new Rotation2d(Math.PI * 0)), false);
-        mSwerveMods[3].setDesiredState(new SwerveModuleState(-0.5, new Rotation2d(Math.PI * 0)), false);
+        double currentAngle = gyro.getAngle() % 360;
+        final double angleOffset = 4;
+
+        if (currentAngle < (degrees - angleOffset) % 360)  {
+            mSwerveMods[0].setDesiredState(new SwerveModuleState(1.5, new Rotation2d(Math.PI * 0.75)), false);
+            mSwerveMods[1].setDesiredState(new SwerveModuleState(1.5, new Rotation2d(Math.PI * 0.25)), false);
+            mSwerveMods[2].setDesiredState(new SwerveModuleState(1.5, new Rotation2d(Math.PI * 1.25)), false);
+            mSwerveMods[3].setDesiredState(new SwerveModuleState(1.5, new Rotation2d(Math.PI * 1.75)), false);
+            return false;
+        }
+        else if (currentAngle > (degrees + angleOffset) % 360) {
+            mSwerveMods[0].setDesiredState(new SwerveModuleState(-1.5, new Rotation2d(Math.PI * 0.75)), false);
+            mSwerveMods[1].setDesiredState(new SwerveModuleState(-1.5, new Rotation2d(Math.PI * 0.25)), false);
+            mSwerveMods[2].setDesiredState(new SwerveModuleState(-1.5, new Rotation2d(Math.PI * 1.25)), false);
+            mSwerveMods[3].setDesiredState(new SwerveModuleState(-1.5, new Rotation2d(Math.PI * 1.75)), false);
+            return false;
+        }
+        else    {
+            return true;
+        }
     }
 
     public void slowDown(boolean direction)  {
@@ -224,15 +226,16 @@ public class Swerve extends SubsystemBase {
     public void drive(boolean direction)  {
         if (direction){
             for (int i = 0; i < mSwerveMods.length; i++)    {
-                mSwerveMods[i].setDesiredState(new SwerveModuleState(2.5, new Rotation2d(0)), false);
+                mSwerveMods[i].setDesiredState(new SwerveModuleState(2, new Rotation2d(0)), false);
             }
         }
         else {
             for (int i = 0; i < mSwerveMods.length; i++)    {
-                mSwerveMods[i].setDesiredState(new SwerveModuleState(-2.5, new Rotation2d(0)), false);
+                mSwerveMods[i].setDesiredState(new SwerveModuleState(-2, new Rotation2d(0)), false);
             }
         }  
     }
+
 
     @Override
     public void periodic(){
